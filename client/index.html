@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boardroom OS</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- AUTH VIEW -->
+  <div id="auth-view" class="view">
+    <div class="form-card">
+      <h2>Boardroom OS</h2>
+      <div class="input-group">
+        <label>Executive Email</label>
+        <input type="email" id="auth-email" placeholder="ceo@acme.com">
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="auth-password" placeholder="••••••••">
+      </div>
+      <div style="display: flex; gap: 10px; margin-top: 20px;">
+        <button class="btn btn-primary" id="btn-login" style="flex: 1;">Secure Login</button>
+        <button class="btn" id="btn-register" style="flex: 1;">Initialize</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ONBOARDING VIEW -->
+  <div id="onboarding-view" class="view">
+    <div class="form-card" style="width: 540px;">
+      <h2>Executive Context Alignment</h2>
+      <p style="color: var(--text-dim); margin-bottom: 20px; line-height: 1.5;">
+        Please define the corporate reality of your organization. This context fundamentally grounds every board response and establishes baseline facts across all sessions.
+      </p>
+      <div class="input-group">
+        <label>Corporate Context</label>
+        <textarea id="onboarding-context" rows="8" placeholder="ACME Corp is a series-B infrastructure player dealing with constrained capex and..."></textarea>
+      </div>
+      <div style="text-align: right; margin-top: 20px;">
+        <button class="btn btn-primary" id="btn-save-context">Lock Context</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP VIEW -->
+  <div id="app-view" class="view active">
+    
+    <header class="app-header">
+      <div class="brand">BOARDROOM OS</div>
+      <div class="actions">
+        <button class="btn" id="btn-context">Context</button>
+        <button class="btn" id="btn-documents" style="margin-left: 10px;">Documents</button>
+        <button class="btn" id="btn-logout" style="margin-left: 10px;">End Session</button>
+      </div>
+    </header>
+
+    <div class="app-body">
+      
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <button class="btn" style="width: 100%;">+ Convene Board</button>
+        </div>
+        <div class="session-list">
+          <div class="session-item active">
+            <div class="session-title">Solar Facility Acquisition</div>
+            <div class="session-date">Today</div>
+          </div>
+          <div class="session-item">
+            <div class="session-title">Q3 Capital Allocation Strategy</div>
+            <div class="session-date">Yesterday</div>
+          </div>
+          <div class="session-item">
+            <div class="session-title">Debt Restructuring Contingency</div>
+            <div class="session-date">Previous Week</div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        
+        <div class="roster">
+          <div class="chip munger">CM Munger</div>
+          <div class="chip hormozi">AH Hormozi</div>
+          <div class="chip utility">UI Utility Insider</div>
+          <div class="chip datacenter">DC Data Center Op</div>
+          <div class="chip finance">EF Finance</div>
+          <div class="chip policy">FP Policy Vet</div>
+          <div class="chip lawyer">CL Lawyer</div>
+        </div>
+
+        <div class="discussion">
+          
+          <div class="message user">
+            <div class="message-header"><span class="dot"></span> User</div>
+            <div class="message-content">
+              We have a non-binding LOI from a colocation operator offering to purchase the 120-acre parcel adjacent to Substation Bravo. They are offering $4M cash upfront and a 20-year commitment to take 30MW, provided we can guarantee delivery by Q4 next year. The board must formally deliberate on whether to accept this term sheet or proceed with our internal development strategy.
+            </div>
+          </div>
+
+          <div class="message board">
+            <div class="message-header"><span class="dot" style="background:#5a9e6f"></span> The Data Center Operator</div>
+            <div class="message-content">
+              First, "provided we guarantee delivery by Q4" is not an offer, it's a catastrophic risk transfer. No one guarantees delivery on a 30MW substation expansion in 18 months in this supply chain environment. Do they have their own long-lead gear secured? Do the transformers even exist on a factory floor anywhere? If you sign that guarantee and miss by 30 days, they use the default clauses to renegotiate the entire deal or walk away with their deposit. Push the delivery risk back to them or tie it specifically to utility interconnection timelines.
+            </div>
+          </div>
+
+          <div class="message board">
+            <div class="message-header"><span class="dot" style="background:#c9a86c"></span> Charlie Munger</div>
+            <div class="message-content">
+              Invert the situation. What happens if you do absolutely nothing? You still own 120 acres adjacent to a substation. Land near power capacity is not going down in value. The operator is rushing you into a corner with a tight deadline to capture the arbitrage between raw land and energized scale. Have you considered simply leasing them the land and making them assume all execution risk on the delivery timeframe?
+            </div>
+          </div>
+          
+        </div>
+
+        <div id="question-banner" class="active">
+          <div class="message-header"><span class="dot" style="background:#e05c3a"></span> Alex Hormozi</div>
+          <p>What is the definitive penalty clause in this LOI if you miss the Q4 delivery date?</p>
+        </div>
+
+        <div class="input-zone">
+          <div class="input-zone-inner">
+            <textarea placeholder="Address the board's inquiries..."></textarea>
+            <button class="btn btn-primary">Submit to Board</button>
+          </div>
+        </div>
+
+      </main>
+
+    </div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
