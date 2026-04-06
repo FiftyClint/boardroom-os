@@ -93,6 +93,62 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email is required' });
+
+    const protocol = req.headers['x-forwarded-proto'] || req.protocol;
+    const host = req.headers.host;
+    const baseUrl = `${protocol}://${host}/`;
+
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: baseUrl
+    });
+    
+    if (error) {
+      return res.status(400).json({ error: error.message });
+    }
+    
+    return res.json({ success: true });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
+router.post('/update-password', async (req, res) => {
+  try {
+    const { password, access_token, refresh_token } = req.body;
+    
+    if (!password || !access_token || !refresh_token) {
+      return res.status(400).json({ error: 'Missing required tokens or password' });
+    }
+    
+    const { error: sessionError } = await supabase.auth.setSession({
+      access_token,
+      refresh_token
+    });
+    
+    if (sessionError) {
+      return res.status(401).json({ error: 'Invalid or expired recovery session' });
+    }
+    
+    const { error: updateError } = await supabase.auth.updateUser({
+      password
+    });
+    
+    if (updateError) {
+      return res.status(400).json({ error: updateError.message });
+    }
+    
+    await supabase.auth.signOut();
+    
+    return res.json({ success: true });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+});
+
 router.post('/logout', (req, res) => {
   if (req.session) {
     req.session.destroy(err => {

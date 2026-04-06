@@ -158,6 +158,21 @@ export async function submitRound(userText) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash;
+  if (hash && hash.includes('type=recovery')) {
+    const params = new URLSearchParams(hash.substring(1));
+    const access_token = params.get('access_token');
+    const refresh_token = params.get('refresh_token');
+    
+    if (access_token && refresh_token) {
+      window.recoveryTokens = { access_token, refresh_token };
+      window.history.replaceState(null, null, window.location.pathname);
+      initAuth();
+      navigateTo('reset-password-view');
+      return;
+    }
+  }
+
   initAuth();
   checkAuth();
   

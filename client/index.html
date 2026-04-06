@@ -29,6 +29,40 @@
         <button class="btn btn-primary" id="btn-login" style="flex: 1;">Secure Login</button>
         <button class="btn" id="btn-register" style="flex: 1;">Initialize</button>
       </div>
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="#" id="link-forgot-password" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Forgot Password?</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD VIEW -->
+  <div id="forgot-password-view" class="view">
+    <div class="form-card">
+      <h2>Recover Access</h2>
+      <div class="input-group">
+        <label>Executive Email</label>
+        <input type="email" id="forgot-email" placeholder="ceo@acme.com">
+      </div>
+      <div style="margin-top: 20px;">
+        <button class="btn btn-primary" id="btn-send-recovery" style="width: 100%;">Send Recovery Link</button>
+      </div>
+      <div style="text-align: center; margin-top: 15px;">
+        <a href="#" id="link-back-login" style="color: var(--text-dim); text-decoration: none; font-size: 13px;">Back to Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESET PASSWORD VIEW -->
+  <div id="reset-password-view" class="view">
+    <div class="form-card">
+      <h2>Reset Password</h2>
+      <div class="input-group">
+        <label>New Password</label>
+        <input type="password" id="reset-password" placeholder="••••••••">
+      </div>
+      <div style="margin-top: 20px;">
+        <button class="btn btn-primary" id="btn-update-password" style="width: 100%;">Update Password</button>
+      </div>
     </div>
   </div>
 
